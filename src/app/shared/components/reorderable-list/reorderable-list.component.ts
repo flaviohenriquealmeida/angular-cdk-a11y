@@ -6,5 +6,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['reorderable-list.component.scss']
 })
 export class ReorderableListComponent {
-  @Input() public items: Array<{ firstName: string, lastName: string }> = [];
+  @Input() public items: Array<Employee> = [];
+}
+
+export interface Employee {
+  firstName: string;
+  lastName: string;
 }
