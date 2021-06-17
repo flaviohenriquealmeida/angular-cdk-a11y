@@ -2,14 +2,6 @@
   [items]="items"
   [itemTemplate]="employeeTemplate">
 </app-reorderable-list>
-<ng-template #employeeTemplate let-item="calopsita">
-  {{ item.firstName }} {{ item.lastName }}
-</ng-template>
-
-<app-reorderable-list
-  [items]="items2"
-  [itemTemplate]="otherTemplate">
-</app-reorderable-list>
-<ng-template #otherTemplate>
-  Olá, sou um template qualquer
+<ng-template #employeeTemplate let-employee>
+  {{ employee.firstName }} {{ employee.lastName }}
 </ng-template>
