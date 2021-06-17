@@ -6,7 +6,7 @@
     class="list-item"
     *ngFor="let item of items; let i = index">
     <div>
-      <span>{{ i + 1 }}</span>
+      <span class="sr-only">{{ i + 1 }}</span>
       <ng-container
         *ngTemplateOutlet="itemTemplate; context: { $implicit: item }">
       </ng-container>
