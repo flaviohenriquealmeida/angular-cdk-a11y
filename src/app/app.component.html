@@ -1,7 +1,13 @@
-<app-reorderable-list
-  [items]="items"
-  [itemTemplate]="employeeTemplate">
-</app-reorderable-list>
-<ng-template #employeeTemplate let-employee>
-  {{ employee.firstName }} {{ employee.lastName }}
-</ng-template>
+<div class="employee-panel">
+  <input>
+  <h1>Employee</h1>
+  <label id="employee-list-label">Employee List</label>
+  <app-reorderable-list
+    [items]="items"
+    [itemTemplate]="employeeTemplate">
+  </app-reorderable-list>
+  <ng-template #employeeTemplate let-employee>
+    {{ employee.firstName }} {{ employee.lastName }}
+  </ng-template>
+</div>
+
