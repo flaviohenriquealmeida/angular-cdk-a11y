@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { Employee } from './shared/components/reorderable-list/reorderable-list.component';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,4 +21,14 @@ export class AppComponent {
       lastName: 'Hamsey'
     }
   ];
+
+  public items2: Array<{ id: string, value: string }> = [
+    { id: '1', value: '1' },
+    { id: '2', value: '2' },
+  ];
+}
+
+export interface Employee {
+  firstName: string;
+  lastName: string;
 }
