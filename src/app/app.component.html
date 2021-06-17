@@ -1,5 +1,15 @@
-<app-reorderable-list [items]="items">
+<app-reorderable-list
+  [items]="items"
+  [itemTemplate]="employeeTemplate">
 </app-reorderable-list>
+<ng-template #employeeTemplate>
+  Olá, sou um template de uma lista de employee
+</ng-template>
 
-<app-reorderable-list [items]="items2">
+<app-reorderable-list
+  [items]="items2"
+  [itemTemplate]="otherTemplate">
 </app-reorderable-list>
+<ng-template #otherTemplate>
+  Olá, sou um template qualquer
+</ng-template>

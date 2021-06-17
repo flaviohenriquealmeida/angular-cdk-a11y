@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-reorderable-list',
@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ReorderableListComponent {
   @Input() public items: Array<unknown> = [];
+  @Input() public itemTemplate: TemplateRef<HTMLElement> | null = null;
 }
