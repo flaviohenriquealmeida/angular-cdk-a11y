@@ -4,7 +4,8 @@
   <label id="employee-list-label">Employee List</label>
   <app-reorderable-list
     [items]="items"
-    [itemTemplate]="employeeTemplate">
+    [itemTemplate]="employeeTemplate"
+    labelledBy="employee-list-label">
   </app-reorderable-list>
   <ng-template #employeeTemplate let-employee>
     {{ employee.firstName }} {{ employee.lastName }}

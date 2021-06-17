@@ -8,4 +8,5 @@ import { Component, Input, TemplateRef } from '@angular/core';
 export class ReorderableListComponent {
   @Input() public items: Array<unknown> = [];
   @Input() public itemTemplate: TemplateRef<HTMLElement> | null = null;
+  @Input() public labelledBy = '';
 }
