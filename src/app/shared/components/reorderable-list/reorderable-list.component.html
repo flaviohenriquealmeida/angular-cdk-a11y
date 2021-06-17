@@ -4,9 +4,12 @@
   <li
     tabindex="0"
     class="list-item"
-    *ngFor="let item of items">
-    <ng-container
-      *ngTemplateOutlet="itemTemplate; context: { $implicit: item }">
-    </ng-container>
+    *ngFor="let item of items; let i = index">
+    <div>
+      <span>{{ i + 1 }}</span>
+      <ng-container
+        *ngTemplateOutlet="itemTemplate; context: { $implicit: item }">
+      </ng-container>
+    </div>
   </li>
 </ol>
