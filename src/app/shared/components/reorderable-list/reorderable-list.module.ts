@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { ReorderableListComponent } from './reorderable-list.component';
+import { KeyboardManagerModule } from './directives/keyboard-manager.module';
 
 @NgModule({
   declarations: [ReorderableListComponent],
@@ -11,7 +12,8 @@ import { ReorderableListComponent } from './reorderable-list.component';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    DragDropModule
+    DragDropModule,
+    KeyboardManagerModule
   ]
 })
 export class ReorderableListModule {}
