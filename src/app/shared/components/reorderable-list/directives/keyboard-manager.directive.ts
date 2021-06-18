@@ -1,3 +1,4 @@
+import { EventEmitter, Output } from '@angular/core';
 import { ContentChildren, Directive, HostListener, OnInit, QueryList } from '@angular/core';
 import { KeyboardManagedItemDirective } from './keyboard-managed-item.directive';
 
@@ -6,6 +7,7 @@ import { KeyboardManagedItemDirective } from './keyboard-managed-item.directive'
 })
 export class KeyboardManagerDirective implements OnInit {
 
+  @Output() public appDropped: EventEmitter<ReorderableListEvent> = new EventEmitter();
   @ContentChildren(KeyboardManagedItemDirective, { descendants: true })
   public managedItems!: QueryList<KeyboardManagedItemDirective>;
   public movableItem: KeyboardManagedItemDirective | null = null;
@@ -41,6 +43,12 @@ export class KeyboardManagerDirective implements OnInit {
     this.keyHandlers.set(' ', event => {
       console.log('Space');
       if (this.isMovingItem()) {
+        const managedItemsAsArray = this.managedItems.toArray();
+        const focusedElement = this.getFocusedElement();
+        const currentIndex = managedItemsAsArray
+          .findIndex(item => item === focusedElement);
+        const previousIndex = managedItemsAsArray.findIndex(item => item === this.movableItem);
+        this.appDropped.emit({ previousIndex, currentIndex });
         this.stopMovingItem();
       } else {
         this.startMovingItem();
@@ -103,4 +111,9 @@ export class KeyboardManagerDirective implements OnInit {
 enum Direction {
   PREVIOUS = -1,
   NEXT = 1
-};
+}
+
+export interface ReorderableListEvent {
+  currentIndex: number;
+  previousIndex: number;
+}

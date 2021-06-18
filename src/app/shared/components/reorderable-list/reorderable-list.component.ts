@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, TemplateRef } from '@angular/core';
 import { faGripLines } from '@fortawesome/free-solid-svg-icons';
+import { ReorderableListEvent } from './directives/keyboard-manager.directive';
 @Component({
   selector: 'app-reorderable-list',
   templateUrl: './reorderable-list.component.html',
@@ -12,7 +13,7 @@ export class ReorderableListComponent {
   @Input() public labelledBy = '';
   public fa = { faGripLines };
 
-  public reorderItemsOnDrop(event: CdkDragDrop<any, any>): void {
+  public reorderItemsOnDrop(event: CdkDragDrop<any, any> | ReorderableListEvent): void {
     moveItemInArray(this.items, event.previousIndex, event.currentIndex);
   }
 }
