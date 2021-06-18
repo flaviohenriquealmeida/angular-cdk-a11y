@@ -5,6 +5,10 @@
     tabindex="0"
     class="list-item"
     *ngFor="let item of items; let i = index">
+    <fa-icon
+      [icon]="fa.faGripLines"
+      aria-hidden="true">
+    </fa-icon>
     <div>
       <span class="sr-only">{{ i + 1 }}</span>
       <ng-container
