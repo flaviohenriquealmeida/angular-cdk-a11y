@@ -8,7 +8,7 @@ export class KeyboardManagerDirective implements OnInit {
 
   @ContentChildren(KeyboardManagedItemDirective, { descendants: true })
   public managedItems!: QueryList<KeyboardManagedItemDirective>;
-
+  public movableItem: KeyboardManagedItemDirective | null = null;
   private keyHandlers: Map<string, (event: KeyboardEvent) => void> = new Map();
 
   public ngOnInit(): void {
@@ -44,5 +44,11 @@ export class KeyboardManagerDirective implements OnInit {
       if (handler) {
         handler(event);
       }
+  }
+
+  public isMovingItem(): boolean {
+    const movingItem = !!this.movableItem;
+    console.log('Is moving item? ' + movingItem);
+    return movingItem;
   }
 }
