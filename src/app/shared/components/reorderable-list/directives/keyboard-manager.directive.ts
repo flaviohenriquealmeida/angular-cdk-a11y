@@ -1,9 +1,13 @@
-import { Directive, HostListener, OnInit } from '@angular/core';
+import { ContentChildren, Directive, HostListener, OnInit, QueryList } from '@angular/core';
+import { KeyboardManagedItemDirective } from './keyboard-managed-item.directive';
 
 @Directive({
   selector: '[appKeyboardManager]'
 })
 export class KeyboardManagerDirective implements OnInit {
+
+  @ContentChildren(KeyboardManagedItemDirective, { descendants: true })
+  public managedItems!: QueryList<KeyboardManagedItemDirective>;
 
   private keyHandlers: Map<string, (event: KeyboardEvent) => void> = new Map();
 
@@ -17,6 +21,7 @@ export class KeyboardManagerDirective implements OnInit {
     });
 
     this.keyHandlers.set('ArrowUp', event => {
+      console.log(this.managedItems.toArray());
       console.log('ArrowUp');
     });
 

@@ -7,6 +7,7 @@
   (cdkDropListDropped)="reorderItemsOnDrop($event)"
 >
   <li
+    appKeyboardManagerItem
     tabindex="0"
     class="list-item"
     *ngFor="let item of items; let i = index"
