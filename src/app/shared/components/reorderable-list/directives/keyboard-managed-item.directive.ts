@@ -1,7 +1,20 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Output } from '@angular/core';
+
 
 @Directive({
-  selector: '[appKeyboardManagerItem]'
+  selector: '[appKeyboardManagedItem]'
 })
 export class KeyboardManagedItemDirective {
+
+  @Output() public focused: EventEmitter<void> = new EventEmitter();
+  constructor(private elementRef: ElementRef<HTMLElement>) {}
+
+  public focus(): void {
+    this.elementRef.nativeElement.focus();
+    this.focused.emit();
+  }
+
+  public isFocused(): boolean {
+    return this.elementRef.nativeElement === document.activeElement;
+  }
 }
