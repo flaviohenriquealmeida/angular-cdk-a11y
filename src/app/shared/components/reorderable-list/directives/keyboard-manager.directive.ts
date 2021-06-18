@@ -18,15 +18,24 @@ export class KeyboardManagerDirective implements OnInit {
   private initializeKeyHandlers(): void {
     this.keyHandlers.set('Tab', event => {
       console.log('Tab');
+      if (this.isMovingItem()) {
+        event.preventDefault();
+      }
     });
 
     this.keyHandlers.set('ArrowUp', event => {
       console.log(this.managedItems.toArray());
       console.log('ArrowUp');
+      if (this.isMovingItem()) {
+        this.selectElement(Direction.PREVIOUS).focus();
+      }
     });
 
     this.keyHandlers.set('ArrowDown', event => {
       console.log('ArrowDown');
+      if (this.isMovingItem()) {
+        this.selectElement(Direction.NEXT).focus();
+      }
     });
 
     this.keyHandlers.set(' ', event => {
@@ -40,6 +49,7 @@ export class KeyboardManagerDirective implements OnInit {
 
     this.keyHandlers.set('Escape', event => {
       console.log('Escape');
+      this.stopMovingItem();
     });
   }
 
@@ -74,4 +84,23 @@ export class KeyboardManagerDirective implements OnInit {
       .find(item => item.isFocused());
     return managedItem ? managedItem : null;
   }
+
+  private selectElement(direction: Direction): KeyboardManagedItemDirective {
+    const managedItemsAsArray = this.managedItems.toArray();
+    const currentSelectedIndex = managedItemsAsArray
+      .findIndex(item => item.isFocused());
+    const targetElementFocus = managedItemsAsArray[currentSelectedIndex + direction];
+    if (targetElementFocus) {
+      return targetElementFocus;
+    } else {
+      return direction === Direction.PREVIOUS
+        ? managedItemsAsArray[managedItemsAsArray.length - 1]
+        : managedItemsAsArray[0];
+    }
+  }
 }
+
+enum Direction {
+  PREVIOUS = -1,
+  NEXT = 1
+};
