@@ -31,6 +31,11 @@ export class KeyboardManagerDirective implements OnInit {
 
     this.keyHandlers.set(' ', event => {
       console.log('Space');
+      if (this.isMovingItem()) {
+        this.stopMovingItem();
+      } else {
+        this.startMovingItem();
+      }
     });
 
     this.keyHandlers.set('Escape', event => {
@@ -50,5 +55,23 @@ export class KeyboardManagerDirective implements OnInit {
     const movingItem = !!this.movableItem;
     console.log('Is moving item? ' + movingItem);
     return movingItem;
+  }
+
+  public stopMovingItem(): void {
+    console.log('parou de mover o item');
+    this.movableItem = null;
+  }
+
+  public startMovingItem(): void {
+    console.log('começou a mover o item');
+    this.movableItem = this.getFocusedElement();
+    console.log(this.movableItem);
+  }
+
+  private getFocusedElement(): KeyboardManagedItemDirective | null {
+    const managedItem = this.managedItems
+      .toArray()
+      .find(item => item.isFocused());
+    return managedItem ? managedItem : null;
   }
 }
