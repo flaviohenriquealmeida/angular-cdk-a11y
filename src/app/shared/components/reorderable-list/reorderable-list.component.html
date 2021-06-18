@@ -1,11 +1,16 @@
 <ol class="list"
   role="list"
-  [attr.aria-labelledby]="labelledBy">
+  [attr.aria-labelledby]="labelledBy"
+  cdkDropList
+  cdkDropListOrientation="vertical"
+>
   <li
     tabindex="0"
     class="list-item"
-    *ngFor="let item of items; let i = index">
+    *ngFor="let item of items; let i = index"
+    cdkDrag>
     <fa-icon
+      cdkDragHandle
       [icon]="fa.faGripLines"
       aria-hidden="true">
     </fa-icon>

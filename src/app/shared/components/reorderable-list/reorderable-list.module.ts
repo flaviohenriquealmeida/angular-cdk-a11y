@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { ReorderableListComponent } from './reorderable-list.component';
 
@@ -9,7 +10,8 @@ import { ReorderableListComponent } from './reorderable-list.component';
   exports: [ReorderableListComponent],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DragDropModule
   ]
 })
 export class ReorderableListModule {}
