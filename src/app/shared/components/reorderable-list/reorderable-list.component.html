@@ -3,6 +3,7 @@
   [attr.aria-labelledby]="labelledBy"
   cdkDropList
   cdkDropListOrientation="vertical"
+  (cdkDropListDropped)="reorderItemsOnDrop($event)"
 >
   <li
     tabindex="0"
