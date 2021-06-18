@@ -49,7 +49,10 @@ export class KeyboardManagerDirective implements OnInit {
           .findIndex(item => item === focusedElement);
         const previousIndex = managedItemsAsArray.findIndex(item => item === this.movableItem);
         this.appDropped.emit({ previousIndex, currentIndex });
-        this.stopMovingItem();
+        setTimeout(() => {
+          this.movableItem?.focus();
+          this.stopMovingItem();
+        });
       } else {
         this.startMovingItem();
       }
