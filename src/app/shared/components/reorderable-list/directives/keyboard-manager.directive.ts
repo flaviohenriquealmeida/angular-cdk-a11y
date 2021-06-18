@@ -1,5 +1,6 @@
 import { EventEmitter, Output } from '@angular/core';
 import { ContentChildren, Directive, HostListener, OnInit, QueryList } from '@angular/core';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { KeyboardManagedItemDirective } from './keyboard-managed-item.directive';
 
 @Directive({
@@ -12,6 +13,8 @@ export class KeyboardManagerDirective implements OnInit {
   public managedItems!: QueryList<KeyboardManagedItemDirective>;
   public movableItem: KeyboardManagedItemDirective | null = null;
   private keyHandlers: Map<string, (event: KeyboardEvent) => void> = new Map();
+
+  constructor(private announcer: LiveAnnouncer) {}
 
   public ngOnInit(): void {
     this.initializeKeyHandlers();
@@ -86,6 +89,11 @@ export class KeyboardManagerDirective implements OnInit {
   public startMovingItem(): void {
     console.log('começou a mover o item');
     this.movableItem = this.getFocusedElement();
+    const index = this.managedItems.toArray().findIndex(item => item === this.movableItem);
+    const message = `Item grabed. Current position in list: ${index + 1}
+      of ${this.managedItems.length}. Press up and down keys to change position,
+       Spacebar to drop, escape to cancel.`;
+    this.announcer.announce(message);
     console.log(this.movableItem);
   }
 
