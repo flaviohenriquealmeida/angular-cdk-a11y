@@ -5,11 +5,22 @@
   border-radius: 4px;
 
   .list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     background: #F5F7FA;
     padding: 6px 4px;
     margin: 2px 0;
     border: solid 1px lighten(#AEB6C6, 10%);
     border-radius: 4px;
+    fa-icon {
+      padding: 0 6px;
+      cursor: move;
+    }
 
+    .list-item-content {
+      flex-grow: 1;
+    }
   }
 }
